@@ -8,53 +8,69 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #faf8f5; color: #2d3748; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 40px; }
         
-        .top-header { width: 100%; background: #fff; border-bottom: 2px solid #e2e8f0; padding: 12px; text-align: center; font-weight: bold; color: #0284c7; font-size: 15px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        /* Tonguç Tarzı Şık Header */
+        .top-header-card { width: 90%; max-width: 680px; background: #ffffff; border: 2px solid #ffedd5; border-radius: 50px; padding: 12px 25px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.08); }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .brand-icon { background: #f97316; color: white; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .brand-info h3 { font-size: 15px; color: #1e293b; font-weight: 800; }
+        .brand-info p { font-size: 11px; color: #f97316; font-weight: 700; }
+        .header-badge { background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
 
         .container { width: 100%; max-width: 680px; padding: 20px; margin-top: 10px; }
-        .card { background: #ffffff; border-radius: 20px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #edf2f7; text-align: center; margin-bottom: 20px; position: relative; }
+        .card { background: #ffffff; border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1px solid #f1f5f9; text-align: center; margin-bottom: 20px; position: relative; }
         
-        h1 { color: #1a202c; font-size: 24px; margin-bottom: 6px; }
-        .subtitle { color: #718096; font-size: 13px; margin-bottom: 20px; }
+        h1 { color: #0f172a; font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+        .subtitle { color: #64748b; font-size: 13px; margin-bottom: 24px; }
         
-        input[type="text"] { width: 100%; padding: 14px; border-radius: 12px; border: 2px solid #e2e8f0; background-color: #f8fafc; color: #1a202c; font-size: 16px; margin-bottom: 8px; outline: none; text-align: center; font-weight: 600; }
-        input[type="text"]:focus { border-color: #f97316; }
+        input[type="text"] { width: 100%; padding: 16px; border-radius: 14px; border: 2px solid #e2e8f0; background-color: #f8fafc; color: #0f172a; font-size: 16px; margin-bottom: 8px; outline: none; text-align: center; font-weight: 700; transition: 0.2s; }
+        input[type="text"]:focus { border-color: #f97316; background: #fff; }
         
-        .info-note { font-size: 11px; color: #10b981; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .info-note { font-size: 11px; color: #10b981; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 4px; font-weight: 600; }
         
-        button { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #f97316; color: white; font-size: 16px; font-weight: bold; cursor: pointer; margin-bottom: 10px; transition: 0.2s; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
+        button { width: 100%; padding: 16px; border-radius: 14px; border: none; background: #f97316; color: white; font-size: 16px; font-weight: 800; cursor: pointer; margin-bottom: 12px; transition: 0.2s; box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35); }
         button:hover { background: #ea580c; transform: translateY(-1px); }
-        .btn-secondary { background: #e0f2fe; color: #0369a1; box-shadow: none; }
-        .btn-secondary:hover { background: #bae6fd; }
+        .btn-secondary { background: #f0f9ff; color: #0284c7; box-shadow: none; border: 1px solid #e0f2fe; }
+        .btn-secondary:hover { background: #e0f2fe; }
         
         .hidden { display: none !important; }
 
-        .q-title { font-weight: bold; font-size: 16px; color: #1e293b; text-align: left; margin-bottom: 12px; }
-        .q-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: left; font-size: 14px; margin-bottom: 15px; color: #334155; line-height: 1.5; }
+        .q-title { font-weight: 800; font-size: 16px; color: #0f172a; text-align: left; margin-bottom: 12px; }
+        .q-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; text-align: left; font-size: 14px; margin-bottom: 18px; color: #334155; line-height: 1.6; }
         
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .match-btn { background: #fff; border: 2px solid #cbd5e1; border-radius: 10px; padding: 12px; font-size: 13px; color: #334155; cursor: pointer; text-align: center; box-shadow: none; font-weight: 600; width: 100%; }
-        .match-btn.selected { border-color: #0284c7; background: #f0f9ff; color: #0284c7; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .match-btn { background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px; font-size: 13px; color: #334155; cursor: pointer; text-align: center; box-shadow: none; font-weight: 700; width: 100%; transition: 0.2s; }
+        .match-btn.selected { border-color: #f97316; background: #fff7ed; color: #c2410c; }
+
+        /* Soru 5: Görsel Çizgili Eşleştirme SVG Alanı */
+        .line-match-wrapper { position: relative; width: 100%; margin: 20px 0; user-select: none; }
+        .line-match-container { display: flex; justify-content: space-between; position: relative; z-index: 2; }
+        .match-col { width: 42%; display: flex; flex-direction: column; gap: 20px; }
+        .line-node { background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 12px; font-size: 13px; font-weight: 700; color: #334155; cursor: pointer; transition: 0.2s; position: relative; text-align: center; }
+        .line-node.active { border-color: #f97316; background: #fff7ed; color: #c2410c; }
+        .svg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+        /* Soru 7: Sürükle Bırak Alanı */
+        .drag-pool { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .drag-card { background: #0284c7; color: white; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: grab; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2); }
+        .drag-card:active { cursor: grabbing; }
+        .drop-zone { min-height: 48px; border: 2px dashed #94a3b8; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-size: 13px; font-weight: 800; color: #0284c7; margin-top: 5px; }
+        .drop-zone.hovered { border-color: #f97316; background: #fff7ed; }
 
         .check-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; text-align: left; }
-        .check-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
-        .check-table input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
-
-        .drag-pool { display: flex; gap: 8px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
-        .drag-item { background: #38bdf8; color: white; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; user-select: none; }
-        .drop-target { min-height: 40px; border: 2px dashed #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #fff; font-size: 13px; font-weight: bold; color: #0284c7; }
+        .check-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: #334155; font-weight: 600; }
+        .check-table input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: #f97316; }
 
         .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .leaderboard-table th, .leaderboard-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; font-size: 13px; text-align: center; }
-        .leaderboard-table th { background: #f8fafc; color: #64748b; }
+        .leaderboard-table th, .leaderboard-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 13px; text-align: center; }
+        .leaderboard-table th { background: #f8fafc; color: #64748b; font-weight: 700; }
 
-        .footer-credit { font-size: 12px; color: #94a3b8; margin-top: 15px; }
+        .footer-credit { font-size: 12px; color: #94a3b8; margin-top: 20px; font-weight: 600; }
 
-        /* Özel Zorunlu Uyarı Modalı (Kapatılamaz) */
-        #custom-alert { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; }
-        #custom-alert.hidden { display: none !important; }
-        .alert-box { background: white; padding: 25px; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .alert-box h3 { color: #e11d48; margin-bottom: 10px; font-size: 18px; }
-        .alert-box p { font-size: 14px; color: #475569; margin-bottom: 20px; line-height: 1.4; }
+        /* Kapatılamaz Modal */
+        #custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+        .modal-card { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 380px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .modal-card h3 { color: #e11d48; font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+        .modal-card p { font-size: 13px; color: #475569; margin-bottom: 20px; line-height: 1.5; font-weight: 600; }
     </style>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -62,15 +78,24 @@
 </head>
 <body>
 
-    <!-- Sabit Üst Başlık -->
-    <div class="top-header">Yapımcı: Özgür GÖK - Ghost Pulse Studio</div>
+    <!-- Tonguç Stili Header -->
+    <div class="top-header-card">
+        <div class="header-brand">
+            <div class="brand-icon">🎓</div>
+            <div class="brand-info">
+                <h3>GHOST PULSE STUDIO</h3>
+                <p>Yapımcı: Özgür GÖK • 8. Sınıf Ahlak ve Vatandaşlık</p>
+            </div>
+        </div>
+        <div class="header-badge">YAZILI HAZIRLIK</div>
+    </div>
 
-    <!-- Kapatılamaz Uyarı Penceresi -->
-    <div id="custom-alert" class="hidden">
-        <div class="alert-box">
-            <h3>⚠️ İsim Girişi Zorunludur!</h3>
-            <p>Sınava, ders notlarına veya skor tablosuna erişebilmek için lütfen ilk ekrandan <strong>Adınızı Soyadınızı</strong> giriniz.</p>
-            <button onclick="closeAlert()" style="margin-bottom:0;">Tamam</button>
+    <!-- Kapatılamaz Modal -->
+    <div id="custom-modal" class="hidden">
+        <div class="modal-card">
+            <h3>⚠️ İsim Girişi Zorunludur</h3>
+            <p>Sınava çözmeye başlamak, ders notlarını incelemek veya skor tablosuna bakmak için lütfen ilk önce <strong>Adınızı Soyadınızı</strong> giriniz.</p>
+            <button onclick="closeModal()" style="margin-bottom:0;">Anladım, İsmi Gireceğim</button>
         </div>
     </div>
 
@@ -78,39 +103,61 @@
         <!-- 1. GİRİŞ EKRANI -->
         <div id="screen-login" class="card">
             <h1>Ahlak ve Vatandaşlık Sınavı</h1>
-            <div class="subtitle">2026-2027 Eğitim Öğretim Yılı • Bayryazı Ortaokulu 1. Dönem 1. Yazılısı</div>
+            <div class="subtitle">1. Dönem 1. Yazılı Hazırlık Platformu</div>
 
-            <input type="text" id="user-fullname" placeholder="ADINIZ SOYADINIZ (ZORUNLU)" maxlength="25">
+            <input type="text" id="user-fullname" placeholder="Örn: Özgür Gök" maxlength="25">
             <div class="info-note">🛡 Sıralama için gereklidir, herhangi bir kişisel veriye dokunulmayacaktır.</div>
 
-            <button onclick="checkAndRun(startExam)">▶ Örnek Sınavı Çöz (Önerilen)</button>
+            <button onclick="checkNameAndRun(startExam)">▶ Örnek Sınavı Çöz (Önerilen)</button>
             <div class="grid-2">
-                <button onclick="checkAndRun(openNotes)" class="btn-secondary">📘 Ders Notları</button>
-                <button onclick="checkAndRun(openLeaderboard)" class="btn-secondary">🏆 Skor Tablosu</button>
+                <button onclick="checkNameAndRun(openNotes)" class="btn-secondary">📘 Ders Notları</button>
+                <button onclick="checkNameAndRun(openLeaderboard)" class="btn-secondary">🏆 Skor Tablosu</button>
             </div>
 
-            <div class="footer-credit">Yapımcı: <strong>Özgür GÖK</strong> - Ghost Pulse Studio</div>
+            <div class="footer-credit">Yapımcı: <strong>Özgür GÖK</strong></div>
         </div>
 
-        <!-- 2. DERS NOTLARI EKRANI -->
+        <!-- 2. DERS NOTLARI EKRANI (FOTOĞRAFLARIN TAMAMI EKLENDİ) -->
         <div id="screen-notes" class="card hidden" style="text-align: left;">
-            <h2>📘 Ahlak ve Vatandaşlık Ders Notları</h2>
-            <div class="subtitle">Bayramyazı Ortaokulu 1. Dönem 1. Yazılı Konu Özeti</div>
+            <h2>📘 Ahlak ve Vatandaşlık Ders Notu</h2>
+            <div class="subtitle">1. Dönem 1. Yazılı Eksiksiz Konu Özeti</div>
 
             <div class="q-box">
-                <strong>1. Ahlakın Temel Kavramları:</strong><br>
-                • <b>Ahlak:</b> İnsanın iyi/kötü olarak nitelendirilmesine yol açan özellikler ve eylemler.<br>
-                • <b>Vicdan:</b> İnsanın içindeki ahlaki mahkeme ve otorite; doğru/yanlış hükmü verir.<br>
-                • <b>Mizaç:</b> İnsanın doğuştan getirdiği temel huy, karakter ve yaratılış özellikleri (Tez canlılık vb.).<br>
-                • <b>Erdem:</b> Sözünde durmak, dürüstlük, adalet gibi sonradan kazanılan üstün nitelikler.<br>
-                • <b>Edep:</b> Toplum içinde nazik ve kibar davranma kuralları.
+                <strong style="color:#f97316; font-size:15px;">1) AHLAKIN TEMEL KAVRAMLARI:</strong><br><br>
+                • <b>AHLAK:</b> Sözlükte huy, mizaç ve karakter anlamındadır. Terim olarak ise insanın iyi ve kötü olarak nitelendirilmesine sebep olan özellikleridir. Ahlak kavramı hayatımızın her alanında bize rehberlik eden bir pusula gibidir. Ahlak eğitimi birey için uzun soluklu bir süreçtir. Bu süreç öncelikle ailede başlar.<br><br>
+                • <b>EDEP:</b> Bireylerin toplum içinde iken yüksek sesli konuşmaması, doğru bir şekilde oturması, yemek esnasında ağzında lokma varken konuşmaması gibi kibar ve terbiyeli hareketler edep kavramı ile ilgilidir.<br><br>
+                • <b>ERDEM:</b> Sözünde durmak, dürüst olmak gibi hem dinde hem de toplumda övülen üstün niteliklerdir. Erdemli davranışlara sahip olan bireyler; toplumda sevilen, sayılan ve her zaman toplumda yeri olan bireylerdir.<br><br>
+                • <b>ÖRF-ADETLER:</b> Toplumun ortaklaşa olarak kabul ettiği ve nesilden nesile aktardığı alışkanlık ve yaşam biçimini ifade eder.<br><br>
+                • <b>MİZAÇ:</b> İnsanın doğuştan getirdiği, onu diğer bireylerden ayıran temel özellikler, huy.<br><br>
+                • <b>VİCDAN:</b> İnsanın kendi yaptığı davranışlar hakkında bir yargıya varmasını sağlayan, iyiyi ve kötüyü görmesine olanak sağlayan iç sesidir.
             </div>
 
             <div class="q-box">
-                <strong>2. Ahlaki Ölçütler ve Kaynaklar:</strong><br>
-                • <b>Toplumsal Kaynaklar:</b> Örf, adet, gelenekler (Bayramda el öpmek, misafire ikram, selamlaşmak).<br>
-                • <b>Niyet ve Ahlak:</b> Bir eylemin iyi sayılması için sadece sonucun iyi olması yetmez; niyetin de samimi olması gerekir.<br>
-                • <b>Değerler:</b> Dürüstlük, kul hakkına saygı ve yardımseverlik.
+                <strong style="color:#f97316; font-size:15px;">2) AHLAKIN KAYNAKLARI:</strong><br><br>
+                ✓ Gelenek ve görenekler<br>
+                ✓ Dini değer ve kurallar<br>
+                ✓ Örf ve adetler<br>
+                ✓ Görgü kuralları
+            </div>
+
+            <div class="q-box">
+                <strong style="color:#f97316; font-size:15px;">3) AHLAKİ ÖLÇÜTLER ÇERÇEVESİNDE OLAY VE OLGULAR:</strong><br><br>
+                İnsanların birbiriyle kurduğu ilişkileri düzenleyen ahlak; iyi-kötü, doğru-yanlışın belirlenmesinde de etkilidir.<br><br>
+                • <b>ADALET:</b> Hakka olana hakkını teslim etmek anlamına gelmektedir.<br>
+                • <b>EŞİTLİK:</b> Bireyler arasında ayrım yapmadan aynı şart ve koşulları onlara sağlamak olarak ifade edebiliriz.<br>
+                • <b>SAYGI:</b> Herkesi olduğu gibi kabul etmek, toplum içinde hareket ederken kimseyi rahatsız etmemek.<br>
+                • <b>EMPATİ:</b> Kişinin, kendisini karşısındaki kişinin yerine koyarak olayları onun bakış açısıyla görmesi ve değerlendirmesidir.<br>
+                • <b>DÜRÜSTLÜK:</b> Sözünde ve davranışlarında doğruluktan ayrılmamak, haklı olmayana el uzatmamak olarak nitelendirilebilir.<br>
+                • <b>YARDIMSEVERLİK:</b> Yoksullara, yardıma muhtaç olanlara iyilik ve yardım etme.<br>
+                • <b>İYİLİK:</b> Ahlakça değerli olan erdemlerden oluşur (Doğruluk, dürüstlük, merhamet, adalet iyiliği oluşturur).<br>
+                • <b>KÖTÜLÜK:</b> Ahlaki olarak istenmeyen, fena, olumsuz olan kavramdır (Fesatlık, bencillik, çıkarcılık, art niyet kötülüğü oluşturur).
+            </div>
+
+            <div class="q-box">
+                <strong style="color:#f97316; font-size:15px;">4) AHLAKİ DAVRANIŞLAR VE SORUMLULUK İLİŞKİSİ:</strong><br><br>
+                • Ahlak, günlük yaşamımızda bize yol gösterir. Bir hata yaptığımızda dürüst davranmak ahlaki sorumluluktur. Başkalarına zarar vermemek ve adil davranmak toplumsal huzuru sağlar.<br>
+                • Eğer ahlaki sorumluluklar yerine getirilmezse bireyler arasındaki güven duygusu ciddi şekilde zedelenir. Hatalar gizlendiğinde dürüstlük kaybolur ve insanlar birbirine şüpheyle yaklaşır.<br>
+                • Ahlaki sorumlulukları yerine getirmek bireyin iç dünyasında huzur ve güven duygusu oluşturur. Bu erdemli davranışlar, bireyin dürüst ve sorumluluk sahibi bir birey olarak yetişmesini sağlar.
             </div>
 
             <button onclick="backToLogin()" class="btn-secondary">← Ana Menüye Dön</button>
@@ -118,10 +165,10 @@
 
         <!-- 3. SINAV EKRANI -->
         <div id="screen-exam" class="card hidden">
-            <div style="display:flex; justify-content:space-between; font-size:12px; color:#64748b; margin-bottom:15px;">
-                <span>Soru: <strong id="q-num">1</strong> / 8</span>
-                <span>Puan: <strong id="q-score">0</strong></span>
-                <span>Süre: <strong id="exam-timer">00:00</strong></span>
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:#64748b; margin-bottom:15px; font-weight:700;">
+                <span>Soru: <strong id="q-num" style="color:#f97316;">1</strong> / 8</span>
+                <span>Puan: <strong id="q-score" style="color:#10b981;">0</strong></span>
+                <span>Süre: <strong id="exam-timer" style="color:#0284c7;">00:00</strong></span>
             </div>
 
             <div id="question-container"></div>
@@ -140,7 +187,7 @@
                         <th>Sıra</th>
                         <th>İsim</th>
                         <th>Puan</th>
-                        <th>D/Y/B</th>
+                        <th>D/Y</th>
                         <th>Süre</th>
                     </tr>
                 </thead>
@@ -159,22 +206,21 @@
         let userName = "";
         let currentQ = 0;
         let score = 0;
-        let correctCount = 0, wrongCount = 0, emptyCount = 0;
+        let correctCount = 0, wrongCount = 0;
         let timerInterval, secondsElapsed = 0;
 
-        // Sorular ve Tam Eşleşen Yanıtlar
         const questions = [
             {
                 type: "single_choice",
                 title: "1. SORU (15 Puan): Ahlakın Tanımı",
-                text: "Okul kulüp çalışmalarında öğretmenin sorduğu, 'İnsanların iyi ya da kötü olarak tanımlanmasına yol açan tüm içsel özelliklere ve eylemlere ne ad verilir?' tanımının karşılığı nedir?",
+                text: "Okul kulüp çalışmalarında öğretmenin sorduğu, 'İnsanların iyi ya da kötü olarak tanımlanmasına yol açan tüm içsel özelliklere ve eylemlere ne ad verilir?' sorusunun yanıtı nedir?",
                 options: ["Ahlak", "Mizaç", "Edep", "Vicdan"],
                 correct: "Ahlak"
             },
             {
                 type: "single_choice",
                 title: "2. SORU (10 Puan): Zeynep'in Otobüs Olayı",
-                text: "Zeynep yaşlı teyzeye yer verdikten sonra içindeki sesin doğru olanı söylediğini hissetmiştir. Karar almasını sağlayan içsel ahlaki mahkeme nedir?",
+                text: "Zeynep yaşlı teyzeye yer verdikten sonra içindeki sesin doğru olanı söylediğini hissetmiştir. Zeynep'in karar almasını sağlayan ve içindeki ahlaki mahkeme olan kavram nedir?",
                 options: ["Mizaç", "Vicdan", "Gelenek", "Erdem"],
                 correct: "Vicdan"
             },
@@ -184,28 +230,34 @@
                 text: "Ahmet'in bayramda gerçekleştirdiği davranışlara dayanarak, ahlakın 'Toplumsal Kaynakları'na örnek olan maddelerin yanındaki kutucukları işaretleyin:",
                 items: [
                     { id: 1, text: "Bayramlarda büyüklerin elini öpmek", correct: true },
-                    { id: 2, text: "Doğuştan getirilen tez canlılık", correct: false },
+                    { id: 2, text: "Doğuştan getirilen tez canlı yapı", correct: false },
                     { id: 3, text: "Misafire ikramda bulunmak / Selamlaşmak", correct: true },
-                    { id: 4, text: "Kişisel vicdan muhasebesi yapmak", correct: false }
+                    { id: 4, text: "Kişisel vicdan mahkemesini dinlemek", correct: false }
                 ]
             },
             {
                 type: "checklist",
                 title: "4. SORU (15 Puan): Âl-i İmrân Suresi 110. Ayet",
-                text: "Ayet-i kerimeye göre 'en hayırlı ümmet' olmanın 2 temel şartı hangileridir? (Doğru olanları seçin)",
+                text: "Ayet-i kerimeye göre 'en hayırlı ümmet' olmanın 2 temel şartı hangi seçeneklerde doğru verilmiştir?",
                 items: [
                     { id: 1, text: "İyiliği emretmek (iyiliği teşvik etmek)", correct: true },
-                    { id: 2, text: "Gösteriş için yardım kampanyasına katılmak", correct: false },
+                    { id: 2, text: "Gösteriş amacıyla yardım yapmak", correct: false },
                     { id: 3, text: "Kötülükten alıkoymak (vazgeçirmeye çalışmak)", correct: true },
-                    { id: 4, text: "Sadece bireysel çıkarları gözetmek", correct: false }
+                    { id: 4, text: "Sadece kendi çıkarlarını düşünmek", correct: false }
                 ]
             },
             {
-                type: "line_match",
+                type: "draw_line",
                 title: "5. SORU (15 Puan): Mizaç ve Erdem Eşleştirmesi",
-                text: "Ali'nin doğuştan getirdiği yapısı ve sonradan kazandığı nitelikleri eşleştirmek için sol ve sağ kutulara sırayla tıklayın:",
-                left: ["Ali'nin tez canlı ve hareketli doğuştan yapısı", "Sözünde durmak, dürüstlük ve adalet"],
-                right: ["Mizaç", "Erdem"],
+                text: "Ali'nin durumlarını doğru kavramlarla eşleştirmek için sol taraftaki düğmeye basıp ardından sağdaki doğru kutuya tıklayın (Kitaplardaki gibi kıvrımlı çizgi çekilecektir):",
+                left: [
+                    { id: 0, text: "Ali'nin tez canlı ve hareketli doğuştan yapısı" },
+                    { id: 1, text: "Sözünde durmak, dürüstlük ve adaletli davranmak" }
+                ],
+                right: [
+                    { id: 0, text: "Mizaç" },
+                    { id: 1, text: "Erdem" }
+                ],
                 correctMap: { 0: 0, 1: 1 }
             },
             {
@@ -215,15 +267,15 @@
                 options: [
                     "Sadece sonucun iyi olması yeterlidir.",
                     "Eyleme başlarken niyetin de iyi, samimi ve dürüst olması gereklidir.",
-                    "Paranın herkes tarafından görülmesi şarttır.",
-                    "Sadece büyüklerin beğenmesi yeterlidir."
+                    "Atılan paranın miktarı en önemli şeydir.",
+                    "Herkesin o davranışı görmesi şarttır."
                 ],
                 correct: "Eyleme başlarken niyetin de iyi, samimi ve dürüst olması gereklidir."
             },
             {
                 type: "drag_drop",
                 title: "7. SORU (10 Puan): Mert'in Para Üstü İadesi",
-                text: "Mert kasiyerin yanlışlıkla verdiği fazla parayı iade etmiştir. Bu davranış doğrudan hangi ahlaki değerlerle ilgilidir? (2 kart seçin):",
+                text: "Mert kasiyerin fazla verdiği 50 TL'yi iade etmiştir. Kartları boşluk alanlarına sürükleyip bırakın (veya kartlara sırayla tıklayın):",
                 pool: ["Dürüstlük", "Kul hakkına saygı", "Mizaç", "Gösteriş"],
                 correct: ["Dürüstlük", "Kul hakkına saygı"]
             },
@@ -233,34 +285,33 @@
                 text: "'Müminlerin iman bakımından en mükemmeli, ahlakı en güzel olanıdır.' Hadisinden çıkarılacak ana düşünce nedir?",
                 options: [
                     "İman ile güzel ahlak arasında ayrılmaz bir bağ vardır; olgun imanın göstergesi güzel ahlaktır.",
-                    "Ahlak sadece doğuştan gelen bir mizaçtan ibarettir.",
-                    "İbadetlerin ahlakla hiçbir ilişkisi bulunmamaktadır.",
-                    "Güzel ahlak sadece toplumsal bir gelenektir."
+                    "Ahlak sadece doğuştan gelen mizaçla açıklanır.",
+                    "İbadet etmek ahlaklı olmak için tek şarttır.",
+                    "Ahlaki kurallar zamana göre tamamen değişir."
                 ],
                 correct: "İman ile güzel ahlak arasında ayrılmaz bir bağ vardır; olgun imanın göstergesi güzel ahlaktır."
             }
         ];
 
-        function checkAndRun(actionCallback) {
+        function checkNameAndRun(callback) {
             const val = document.getElementById('user-fullname').value.trim();
             if(!val) {
-                document.getElementById('custom-alert').classList.remove('hidden');
+                document.getElementById('custom-modal').classList.remove('hidden');
                 return;
             }
             userName = val;
-            actionCallback();
+            callback();
         }
 
-        function closeAlert() {
-            document.getElementById('custom-alert').classList.add('hidden');
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
         }
 
         function startExam() {
             document.getElementById('screen-login').classList.add('hidden');
             document.getElementById('screen-exam').classList.remove('hidden');
 
-            currentQ = 0; score = 0; secondsElapsed = 0;
-            correctCount = 0; wrongCount = 0; emptyCount = 0;
+            currentQ = 0; score = 0; secondsElapsed = 0; correctCount = 0; wrongCount = 0;
 
             timerInterval = setInterval(() => {
                 secondsElapsed++;
@@ -281,7 +332,7 @@
             let html = `<div class="q-title">${q.title}</div><div class="q-box">${q.text}</div>`;
 
             if(q.type === "single_choice") {
-                html += `<div style="display:flex; flex-direction:column; gap:8px;">`;
+                html += `<div style="display:flex; flex-direction:column; gap:10px;">`;
                 q.options.forEach(opt => {
                     html += `<button class="match-btn" onclick="selectSingleOpt(this, '${opt}')">${opt}</button>`;
                 });
@@ -292,30 +343,38 @@
                     html += `<tr><td><input type="checkbox" value="${item.id}" class="chk-item"></td><td>${item.text}</td></tr>`;
                 });
                 html += `</table>`;
-            } else if(q.type === "line_match") {
-                html += `<div class="grid-2">
-                    <div style="display:flex; flex-direction:column; gap:10px;">
-                        <div style="font-size:12px; font-weight:bold; color:#64748b;">ÖZELLİKLER</div>
-                        ${q.left.map((l, i) => `<button class="match-btn" onclick="clickLineLeft(${i}, this)">${l}</button>`).join('')}
-                    </div>
-                    <div style="display:flex; flex-direction:column; gap:10px;">
-                        <div style="font-size:12px; font-weight:bold; color:#64748b;">KAVRAMLAR</div>
-                        ${q.right.map((r, i) => `<button class="match-btn" onclick="clickLineRight(${i}, this)">${r}</button>`).join('')}
+            } else if(q.type === "draw_line") {
+                html += `<div class="line-match-wrapper" id="line-wrapper">
+                    <svg class="svg-canvas" id="svg-canvas"></svg>
+                    <div class="line-match-container">
+                        <div class="match-col" id="left-col">
+                            ${q.left.map(l => `<div class="line-node" data-id="${l.id}" onclick="clickLeftNode(${l.id}, this)">${l.text}</div>`).join('')}
+                        </div>
+                        <div class="match-col" id="right-col">
+                            ${q.right.map(r => `<div class="line-node" data-id="${r.id}" onclick="clickRightNode(${r.id}, this)">${r.text}</div>`).join('')}
+                        </div>
                     </div>
                 </div>`;
             } else if(q.type === "drag_drop") {
-                html += `<div class="drag-pool">
-                    ${q.pool.map(p => `<div class="drag-item" onclick="clickDragItem('${p}', this)">${p}</div>`).join('')}
+                html += `<div class="drag-pool" id="drag-pool">
+                    ${q.pool.map(p => `<div class="drag-card" draggable="true" ondragstart="handleDragStart(event, '${p}')" onclick="clickDragFallback('${p}', this)">${p}</div>`).join('')}
                 </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
-                    <div class="drop-target" id="target-1">1. Değer Seçin</div>
-                    <div class="drop-target" id="target-2">2. Değer Seçin</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:15px;">
+                    <div>
+                        <div style="font-size:11px; font-weight:700; color:#64748b;">1. Değer Boşluğu</div>
+                        <div class="drop-zone" id="zone-0" ondragover="handleDragOver(event)" ondrop="handleDrop(event, 0)">Buraya Sürükleyin</div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; font-weight:700; color:#64748b;">2. Değer Boşluğu</div>
+                        <div class="drop-zone" id="zone-1" ondragover="handleDragOver(event)" ondrop="handleDrop(event, 1)">Buraya Sürükleyin</div>
+                    </div>
                 </div>`;
             }
 
             container.innerHTML = html;
         }
 
+        // Tekli Seçim
         let selectedOpt = "";
         function selectSingleOpt(btn, val) {
             document.querySelectorAll('.match-btn').forEach(b => b.classList.remove('selected'));
@@ -323,27 +382,70 @@
             selectedOpt = val;
         }
 
-        let selectedLeft = null;
-        let lineConnections = {};
-        function clickLineLeft(idx, btn) {
-            selectedLeft = idx;
-            document.querySelectorAll('.grid-2 > div:first-child .match-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
+        // Görsel Çizgili Eşleştirme (Soru 5)
+        let activeLeftId = null;
+        let lineUserMap = {};
+        function clickLeftNode(id, el) {
+            activeLeftId = id;
+            document.querySelectorAll('#left-col .line-node').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
         }
-        function clickLineRight(idx, btn) {
-            if(selectedLeft !== null) {
-                lineConnections[selectedLeft] = idx;
-                btn.classList.add('selected');
-                selectedLeft = null;
+        function clickRightNode(id, el) {
+            if(activeLeftId !== null) {
+                lineUserMap[activeLeftId] = id;
+                drawSvgLines();
+                activeLeftId = null;
+                document.querySelectorAll('#left-col .line-node').forEach(n => n.classList.remove('active'));
             }
         }
+        function drawSvgLines() {
+            const svg = document.getElementById('svg-canvas');
+            const wrapper = document.getElementById('line-wrapper').getBoundingClientRect();
+            svg.innerHTML = "";
 
-        let dragSelections = [];
-        function clickDragItem(val, el) {
-            if(dragSelections.length < 2 && !dragSelections.includes(val)) {
-                dragSelections.push(val);
-                el.style.opacity = "0.4";
-                document.getElementById(`target-${dragSelections.length}`).innerText = val;
+            Object.keys(lineUserMap).forEach(leftId => {
+                const rightId = lineUserMap[leftId];
+                const leftEl = document.querySelector(`#left-col .line-node[data-id="${leftId}"]`).getBoundingClientRect();
+                const rightEl = document.querySelector(`#right-col .line-node[data-id="${rightId}"]`).getBoundingClientRect();
+
+                const x1 = leftEl.right - wrapper.left;
+                const y1 = leftEl.top + leftEl.height/2 - wrapper.top;
+                const x2 = rightEl.left - wrapper.left;
+                const y2 = rightEl.top + rightEl.height/2 - wrapper.top;
+
+                // Kitaptaki Kıvrımlı Çizgi Efekti (Path)
+                const cx1 = x1 + (x2 - x1) / 2;
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", `M ${x1} ${y1} C ${cx1} ${y1}, ${cx1} ${y2}, ${x2} ${y2}`);
+                path.setAttribute("stroke", "#ea580c");
+                path.setAttribute("stroke-width", "3");
+                path.setAttribute("fill", "none");
+                svg.appendChild(path);
+            });
+        }
+
+        // Sürükle-Bırak Mantığı (Soru 7)
+        let draggedItem = "";
+        let droppedZoneMap = [null, null];
+        function handleDragStart(e, val) { draggedItem = val; }
+        function handleDragOver(e) { e.preventDefault(); }
+        function handleDrop(e, zoneIdx) {
+            e.preventDefault();
+            if(draggedItem && !droppedZoneMap.includes(draggedItem)) {
+                droppedZoneMap[zoneIdx] = draggedItem;
+                document.getElementById(`zone-${zoneIdx}`).innerText = draggedItem;
+                document.getElementById(`zone-${zoneIdx}`).style.borderColor = "#f97316";
+            }
+        }
+        function clickDragFallback(val, el) {
+            if(!droppedZoneMap[0]) {
+                droppedZoneMap[0] = val;
+                document.getElementById('zone-0').innerText = val;
+                el.style.opacity = "0.3";
+            } else if(!droppedZoneMap[1] && droppedZoneMap[0] !== val) {
+                droppedZoneMap[1] = val;
+                document.getElementById('zone-1').innerText = val;
+                el.style.opacity = "0.3";
             }
         }
 
@@ -357,10 +459,10 @@
                 const checked = Array.from(document.querySelectorAll('.chk-item:checked')).map(c => parseInt(c.value));
                 const correctIds = q.items.filter(i => i.correct).map(i => i.id);
                 if(JSON.stringify(checked.sort()) === JSON.stringify(correctIds.sort())) isCorrect = true;
-            } else if(q.type === "line_match") {
-                if(lineConnections[0] === 0 && lineConnections[1] === 1) isCorrect = true;
+            } else if(q.type === "draw_line") {
+                if(lineUserMap[0] === 0 && lineUserMap[1] === 1) isCorrect = true;
             } else if(q.type === "drag_drop") {
-                if(JSON.stringify(dragSelections.sort()) === JSON.stringify(q.correct.sort())) isCorrect = true;
+                if(JSON.stringify(droppedZoneMap.sort()) === JSON.stringify(q.correct.sort())) isCorrect = true;
             }
 
             const puanlar = [15, 10, 15, 15, 15, 10, 10, 10];
@@ -371,7 +473,7 @@
                 wrongCount++;
             }
 
-            selectedOpt = ""; selectedLeft = null; lineConnections = {}; dragSelections = [];
+            selectedOpt = ""; activeLeftId = null; lineUserMap = {}; droppedZoneMap = [null, null];
             currentQ++;
 
             if(currentQ < questions.length) {
