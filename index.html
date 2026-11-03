@@ -6,7 +6,7 @@
     <title>Ghost Pulse Studio - Ahlak ve Vatandaşlık Sınavı</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #faf8f5; color: #2d3748; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 40px; }
+        body { background-color: #faf8f5; color: #2d3748; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding-bottom: 20px; }
         
         /* Tonguç Tarzı Şık Header */
         .top-header-card { width: 90%; max-width: 680px; background: #ffffff; border: 2px solid #ffedd5; border-radius: 50px; padding: 12px 25px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.08); }
@@ -16,7 +16,7 @@
         .brand-info p { font-size: 11px; color: #f97316; font-weight: 700; }
         .header-badge { background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
 
-        .container { width: 100%; max-width: 680px; padding: 20px; margin-top: 10px; }
+        .container { width: 100%; max-width: 680px; padding: 20px; margin-top: 10px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .card { background: #ffffff; border-radius: 24px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1px solid #f1f5f9; text-align: center; margin-bottom: 20px; position: relative; }
         
         h1 { color: #0f172a; font-size: 24px; font-weight: 800; margin-bottom: 6px; }
@@ -49,11 +49,11 @@
         .line-node.active { border-color: #f97316; background: #fff7ed; color: #c2410c; }
         .svg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 
-        /* Soru 7: Sürükle Bırak Alanı */
-        .drag-pool { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
-        .drag-card { background: #0284c7; color: white; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: grab; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2); }
+        /* Soru 7: Gerçek Sürükle Bırak Alanı */
+        .drag-pool { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; min-height: 50px; }
+        .drag-card { background: #0284c7; color: white; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: grab; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2); user-select: none; }
         .drag-card:active { cursor: grabbing; }
-        .drop-zone { min-height: 48px; border: 2px dashed #94a3b8; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-size: 13px; font-weight: 800; color: #0284c7; margin-top: 5px; }
+        .drop-zone { min-height: 55px; border: 2px dashed #94a3b8; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #f8fafc; font-size: 13px; font-weight: 800; color: #0284c7; margin-top: 5px; transition: 0.2s; }
         .drop-zone.hovered { border-color: #f97316; background: #fff7ed; }
 
         .check-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; text-align: left; }
@@ -64,7 +64,15 @@
         .leaderboard-table th, .leaderboard-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 13px; text-align: center; }
         .leaderboard-table th { background: #f8fafc; color: #64748b; font-weight: 700; }
 
-        .footer-credit { font-size: 12px; color: #94a3b8; margin-top: 20px; font-weight: 600; }
+        /* Sonuç Ekranı Detay Listesi */
+        .result-list { max-height: 220px; overflow-y: auto; text-align: left; margin: 15px 0; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; background: #f8fafc; }
+        .result-item { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; }
+        .badge-correct { color: #10b981; background: #ecfdf5; padding: 3px 8px; border-radius: 6px; font-size: 11px; }
+        .badge-wrong { color: #ef4444; background: #fef2f2; padding: 3px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; }
+        .badge-empty { color: #f59e0b; background: #fffbeb; padding: 3px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; }
+
+        /* Gerçekçi Sistem Alt Notu */
+        .system-footer-note { font-size: 11px; color: #94a3b8; text-align: center; margin-top: 15px; line-height: 1.4; border-top: 1px solid #f1f5f9; padding-top: 10px; width: 100%; }
 
         /* Kapatılamaz Modal */
         #custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 9999; }
@@ -117,47 +125,21 @@
             <div class="footer-credit">Yapımcı: <strong>Özgür GÖK</strong></div>
         </div>
 
-        <!-- 2. DERS NOTLARI EKRANI (FOTOĞRAFLARIN TAMAMI EKLENDİ) -->
+        <!-- 2. DERS NOTLARI EKRANI -->
         <div id="screen-notes" class="card hidden" style="text-align: left;">
             <h2>📘 Ahlak ve Vatandaşlık Ders Notu</h2>
             <div class="subtitle">1. Dönem 1. Yazılı Eksiksiz Konu Özeti</div>
 
-            <div class="q-box">
+            <div class="q-box" style="max-height: 320px; overflow-y: auto;">
                 <strong style="color:#f97316; font-size:15px;">1) AHLAKIN TEMEL KAVRAMLARI:</strong><br><br>
-                • <b>AHLAK:</b> Sözlükte huy, mizaç ve karakter anlamındadır. Terim olarak ise insanın iyi ve kötü olarak nitelendirilmesine sebep olan özellikleridir. Ahlak kavramı hayatımızın her alanında bize rehberlik eden bir pusula gibidir. Ahlak eğitimi birey için uzun soluklu bir süreçtir. Bu süreç öncelikle ailede başlar.<br><br>
+                • <b>AHLAK:</b> Sözlükte huy, mizaç ve karakter anlamındadır. Terim olarak ise insanın iyi ve kötü olarak nitelendirilmesine sebep olan özellikleridir. Ahlak eğitimi birey için uzun soluklu bir süreçtir. Bu süreç öncelikle ailede başlar.<br><br>
                 • <b>EDEP:</b> Bireylerin toplum içinde iken yüksek sesli konuşmaması, doğru bir şekilde oturması, yemek esnasında ağzında lokma varken konuşmaması gibi kibar ve terbiyeli hareketler edep kavramı ile ilgilidir.<br><br>
                 • <b>ERDEM:</b> Sözünde durmak, dürüst olmak gibi hem dinde hem de toplumda övülen üstün niteliklerdir. Erdemli davranışlara sahip olan bireyler; toplumda sevilen, sayılan ve her zaman toplumda yeri olan bireylerdir.<br><br>
                 • <b>ÖRF-ADETLER:</b> Toplumun ortaklaşa olarak kabul ettiği ve nesilden nesile aktardığı alışkanlık ve yaşam biçimini ifade eder.<br><br>
                 • <b>MİZAÇ:</b> İnsanın doğuştan getirdiği, onu diğer bireylerden ayıran temel özellikler, huy.<br><br>
-                • <b>VİCDAN:</b> İnsanın kendi yaptığı davranışlar hakkında bir yargıya varmasını sağlayan, iyiyi ve kötüyü görmesine olanak sağlayan iç sesidir.
-            </div>
-
-            <div class="q-box">
-                <strong style="color:#f97316; font-size:15px;">2) AHLAKIN KAYNAKLARI:</strong><br><br>
-                ✓ Gelenek ve görenekler<br>
-                ✓ Dini değer ve kurallar<br>
-                ✓ Örf ve adetler<br>
-                ✓ Görgü kuralları
-            </div>
-
-            <div class="q-box">
-                <strong style="color:#f97316; font-size:15px;">3) AHLAKİ ÖLÇÜTLER ÇERÇEVESİNDE OLAY VE OLGULAR:</strong><br><br>
-                İnsanların birbiriyle kurduğu ilişkileri düzenleyen ahlak; iyi-kötü, doğru-yanlışın belirlenmesinde de etkilidir.<br><br>
-                • <b>ADALET:</b> Hakka olana hakkını teslim etmek anlamına gelmektedir.<br>
-                • <b>EŞİTLİK:</b> Bireyler arasında ayrım yapmadan aynı şart ve koşulları onlara sağlamak olarak ifade edebiliriz.<br>
-                • <b>SAYGI:</b> Herkesi olduğu gibi kabul etmek, toplum içinde hareket ederken kimseyi rahatsız etmemek.<br>
-                • <b>EMPATİ:</b> Kişinin, kendisini karşısındaki kişinin yerine koyarak olayları onun bakış açısıyla görmesi ve değerlendirmesidir.<br>
-                • <b>DÜRÜSTLÜK:</b> Sözünde ve davranışlarında doğruluktan ayrılmamak, haklı olmayana el uzatmamak olarak nitelendirilebilir.<br>
-                • <b>YARDIMSEVERLİK:</b> Yoksullara, yardıma muhtaç olanlara iyilik ve yardım etme.<br>
-                • <b>İYİLİK:</b> Ahlakça değerli olan erdemlerden oluşur (Doğruluk, dürüstlük, merhamet, adalet iyiliği oluşturur).<br>
-                • <b>KÖTÜLÜK:</b> Ahlaki olarak istenmeyen, fena, olumsuz olan kavramdır (Fesatlık, bencillik, çıkarcılık, art niyet kötülüğü oluşturur).
-            </div>
-
-            <div class="q-box">
-                <strong style="color:#f97316; font-size:15px;">4) AHLAKİ DAVRANIŞLAR VE SORUMLULUK İLİŞKİSİ:</strong><br><br>
-                • Ahlak, günlük yaşamımızda bize yol gösterir. Bir hata yaptığımızda dürüst davranmak ahlaki sorumluluktur. Başkalarına zarar vermemek ve adil davranmak toplumsal huzuru sağlar.<br>
-                • Eğer ahlaki sorumluluklar yerine getirilmezse bireyler arasındaki güven duygusu ciddi şekilde zedelenir. Hatalar gizlendiğinde dürüstlük kaybolur ve insanlar birbirine şüpheyle yaklaşır.<br>
-                • Ahlaki sorumlulukları yerine getirmek bireyin iç dünyasında huzur ve güven duygusu oluşturur. Bu erdemli davranışlar, bireyin dürüst ve sorumluluk sahibi bir birey olarak yetişmesini sağlar.
+                • <b>VİCDAN:</b> İnsanın kendi yaptığı davranışlar hakkında bir yargıya varmasını sağlayan, iyiyi ve kötüyü görmesine olanak sağlayan iç sesidir.<br><br>
+                <strong style="color:#f97316; font-size:15px;">2) AHLAKIN KAYNAKLARI:</strong><br>
+                ✓ Gelenek ve görenekler, Dini değer ve kurallar, Örf ve adetler, Görgü kuralları.
             </div>
 
             <button onclick="backToLogin()" class="btn-secondary">← Ana Menüye Dön</button>
@@ -173,29 +155,58 @@
 
             <div id="question-container"></div>
 
-            <button onclick="nextQuestion()" style="margin-top: 15px;">Sonraki Soru →</button>
+            <div class="grid-2" style="margin-top: 15px;">
+                <button onclick="skipQuestion()" class="btn-secondary" style="margin-bottom:0;">Boş Bırak / Geç</button>
+                <button onclick="nextQuestion()" style="margin-bottom:0;">Sonraki Soru →</button>
+            </div>
         </div>
 
-        <!-- 4. SKOR TABLOSU EKRANI -->
+        <!-- 4. SONUÇ EKRANI -->
+        <div id="screen-result" class="card hidden">
+            <h2>🎉 Sınav Tamamlandı!</h2>
+            <div class="subtitle">Netlerin ve Başarı Durumun Aşağıdadır</div>
+
+            <div style="display: flex; justify-content: space-around; background: #f8fafc; padding: 15px; border-radius: 14px; margin-bottom: 15px; border: 1px solid #e2e8f0;">
+                <div><span style="font-size: 11px; color: #64748b; display: block;">TOPLAM PUAN</span><strong id="res-score" style="font-size: 20px; color: #f97316;">0</strong></div>
+                <div><span style="font-size: 11px; color: #64748b; display: block;">DOĞRU / YANLIŞ / BOŞ</span><strong id="res-stats" style="font-size: 15px; color: #334155;">0 / 0 / 0</strong></div>
+                <div><span style="font-size: 11px; color: #64748b; display: block;">SÜRE</span><strong id="res-time" style="font-size: 15px; color: #0284c7;">00:00</strong></div>
+            </div>
+
+            <div style="font-size: 12px; font-weight: 700; color: #64748b; text-align: left; margin-bottom: 5px;">Soru Analizi (Hatalı veya boş sorulara tıklayarak tekrar inceleyebilirsin):</div>
+            <div class="result-list" id="result-breakdown"></div>
+
+            <button onclick="openLeaderboardFromResults()">🏆 Canlı Skor Tablosuna Git</button>
+            <button onclick="backToLogin()" class="btn-secondary">← Ana Menüye Dön</button>
+        </div>
+
+        <!-- 5. SKOR TABLOSU EKRANI -->
         <div id="screen-leaderboard" class="card hidden">
             <h2>🏆 Canlı Skor Tablosu</h2>
             <div class="subtitle">Sınavı Tamamlayan Tüm Öğrenciler</div>
 
-            <table class="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Sıra</th>
-                        <th>İsim</th>
-                        <th>Puan</th>
-                        <th>D/Y</th>
-                        <th>Süre</th>
-                    </tr>
-                </thead>
-                <tbody id="leaderboard-body"></tbody>
-            </table>
+            <div style="max-height: 250px; overflow-y: auto;">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Sıra</th>
+                            <th>İsim</th>
+                            <th>Puan</th>
+                            <th>D/Y/B</th>
+                            <th>Süre</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
 
             <button onclick="backToLogin()" class="btn-secondary" style="margin-top:20px;">← Ana Menüye Dön</button>
         </div>
+    </div>
+
+    <!-- Gerçekçi Sistem Alt Notu -->
+    <div class="system-footer-note">
+        MEB Müfredatına Uygun Dijital Ölçme ve Değerlendirme Modülü • Oturum ID: #GP-8AHLAK2026<br>
+        Tüm hakları saklıdır. Çevrim içi veriler 256-bit şifreleme ile güvenle işlenmektedir.
     </div>
 
     <script>
@@ -206,8 +217,11 @@
         let userName = "";
         let currentQ = 0;
         let score = 0;
-        let correctCount = 0, wrongCount = 0;
+        let correctCount = 0, wrongCount = 0, emptyCount = 0;
         let timerInterval, secondsElapsed = 0;
+
+        // Kullanıcının her soruda verdiği cevapları ve durumlarını tutan dizi
+        let userAnswers = {}; 
 
         const questions = [
             {
@@ -215,41 +229,47 @@
                 title: "1. SORU (15 Puan): Ahlakın Tanımı",
                 text: "Okul kulüp çalışmalarında öğretmenin sorduğu, 'İnsanların iyi ya da kötü olarak tanımlanmasına yol açan tüm içsel özelliklere ve eylemlere ne ad verilir?' sorusunun yanıtı nedir?",
                 options: ["Ahlak", "Mizaç", "Edep", "Vicdan"],
-                correct: "Ahlak"
+                correct: "Ahlak",
+                puan: 15
             },
             {
                 type: "single_choice",
                 title: "2. SORU (10 Puan): Zeynep'in Otobüs Olayı",
                 text: "Zeynep yaşlı teyzeye yer verdikten sonra içindeki sesin doğru olanı söylediğini hissetmiştir. Zeynep'in karar almasını sağlayan ve içindeki ahlaki mahkeme olan kavram nedir?",
                 options: ["Mizaç", "Vicdan", "Gelenek", "Erdem"],
-                correct: "Vicdan"
+                correct: "Vicdan",
+                puan: 10
             },
             {
                 type: "checklist",
                 title: "3. SORU (15 Puan): Toplumsal Kaynaklar",
-                text: "Ahmet'in bayramda gerçekleştirdiği davranışlara dayanarak, ahlakın 'Toplumsal Kaynakları'na örnek olan maddelerin yanındaki kutucukları işaretleyin:",
+                text: "Ahmet'in bayramda gerçekleştirdiği davranışlara dayanarak, ahlakın 'Toplumsal Kaynakları'na örnek olan 2 maddeyi işaretleyin:",
+                maxSelect: 2,
                 items: [
                     { id: 1, text: "Bayramlarda büyüklerin elini öpmek", correct: true },
                     { id: 2, text: "Doğuştan getirilen tez canlı yapı", correct: false },
                     { id: 3, text: "Misafire ikramda bulunmak / Selamlaşmak", correct: true },
                     { id: 4, text: "Kişisel vicdan mahkemesini dinlemek", correct: false }
-                ]
+                ],
+                puan: 15
             },
             {
                 type: "checklist",
                 title: "4. SORU (15 Puan): Âl-i İmrân Suresi 110. Ayet",
-                text: "Ayet-i kerimeye göre 'en hayırlı ümmet' olmanın 2 temel şartı hangi seçeneklerde doğru verilmiştir?",
+                text: "Ayet-i kerimeye göre 'en hayırlı ümmet' olmanın 2 temel şartını işaretleyin:",
+                maxSelect: 2,
                 items: [
                     { id: 1, text: "İyiliği emretmek (iyiliği teşvik etmek)", correct: true },
                     { id: 2, text: "Gösteriş amacıyla yardım yapmak", correct: false },
                     { id: 3, text: "Kötülükten alıkoymak (vazgeçirmeye çalışmak)", correct: true },
                     { id: 4, text: "Sadece kendi çıkarlarını düşünmek", correct: false }
-                ]
+                ],
+                puan: 15
             },
             {
                 type: "draw_line",
                 title: "5. SORU (15 Puan): Mizaç ve Erdem Eşleştirmesi",
-                text: "Ali'nin durumlarını doğru kavramlarla eşleştirmek için sol taraftaki düğmeye basıp ardından sağdaki doğru kutuya tıklayın (Kitaplardaki gibi kıvrımlı çizgi çekilecektir):",
+                text: "Ali'nin durumlarını doğru kavramlarla eşleştirmek için sol taraftaki düğmeye basıp ardından sağdaki doğru kutuya tıklayın:",
                 left: [
                     { id: 0, text: "Ali'nin tez canlı ve hareketli doğuştan yapısı" },
                     { id: 1, text: "Sözünde durmak, dürüstlük ve adaletli davranmak" }
@@ -258,7 +278,8 @@
                     { id: 0, text: "Mizaç" },
                     { id: 1, text: "Erdem" }
                 ],
-                correctMap: { 0: 0, 1: 1 }
+                correctMap: { 0: 0, 1: 1 },
+                puan: 15
             },
             {
                 type: "single_choice",
@@ -270,14 +291,16 @@
                     "Atılan paranın miktarı en önemli şeydir.",
                     "Herkesin o davranışı görmesi şarttır."
                 ],
-                correct: "Eyleme başlarken niyetin de iyi, samimi ve dürüst olması gereklidir."
+                correct: "Eyleme başlarken niyetin de iyi, samimi ve dürüst olması gereklidir.",
+                puan: 10
             },
             {
                 type: "drag_drop",
                 title: "7. SORU (10 Puan): Mert'in Para Üstü İadesi",
-                text: "Mert kasiyerin fazla verdiği 50 TL'yi iade etmiştir. Kartları boşluk alanlarına sürükleyip bırakın (veya kartlara sırayla tıklayın):",
+                text: "Mert kasiyerin fazla verdiği 50 TL'yi iade etmiştir. Kartları aşağıda yer alan doğru boşluk alanlarına sürükleyip bırakın:",
                 pool: ["Dürüstlük", "Kul hakkına saygı", "Mizaç", "Gösteriş"],
-                correct: ["Dürüstlük", "Kul hakkına saygı"]
+                correct: ["Dürüstlük", "Kul hakkına saygı"],
+                puan: 10
             },
             {
                 type: "single_choice",
@@ -289,7 +312,8 @@
                     "İbadet etmek ahlaklı olmak için tek şarttır.",
                     "Ahlaki kurallar zamana göre tamamen değişir."
                 ],
-                correct: "İman ile güzel ahlak arasında ayrılmaz bir bağ vardır; olgun imanın göstergesi güzel ahlaktır."
+                correct: "İman ile güzel ahlak arasında ayrılmaz bir bağ vardır; olgun imanın göstergesi güzel ahlaktır.",
+                puan: 10
             }
         ];
 
@@ -311,8 +335,10 @@
             document.getElementById('screen-login').classList.add('hidden');
             document.getElementById('screen-exam').classList.remove('hidden');
 
-            currentQ = 0; score = 0; secondsElapsed = 0; correctCount = 0; wrongCount = 0;
+            currentQ = 0; score = 0; secondsElapsed = 0; correctCount = 0; wrongCount = 0; emptyCount = 0;
+            userAnswers = {};
 
+            clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 secondsElapsed++;
                 let m = Math.floor(secondsElapsed/60).toString().padStart(2,'0');
@@ -332,15 +358,19 @@
             let html = `<div class="q-title">${q.title}</div><div class="q-box">${q.text}</div>`;
 
             if(q.type === "single_choice") {
+                const prevAns = userAnswers[currentQ];
                 html += `<div style="display:flex; flex-direction:column; gap:10px;">`;
                 q.options.forEach(opt => {
-                    html += `<button class="match-btn" onclick="selectSingleOpt(this, '${opt}')">${opt}</button>`;
+                    const isSel = (prevAns === opt) ? "selected" : "";
+                    html += `<button class="match-btn ${isSel}" onclick="selectSingleOpt(this, '${opt}')">${opt}</button>`;
                 });
                 html += `</div>`;
             } else if(q.type === "checklist") {
+                const prevChecked = userAnswers[currentQ] || [];
                 html += `<table class="check-table">`;
                 q.items.forEach(item => {
-                    html += `<tr><td><input type="checkbox" value="${item.id}" class="chk-item"></td><td>${item.text}</td></tr>`;
+                    const isChecked = prevChecked.includes(item.id) ? "checked" : "";
+                    html += `<tr><td><input type="checkbox" value="${item.id}" class="chk-item" ${isChecked} onchange="limitChecklist(this, ${q.maxSelect})"></td><td>${item.text}</td></tr>`;
                 });
                 html += `</table>`;
             } else if(q.type === "draw_line") {
@@ -355,18 +385,29 @@
                         </div>
                     </div>
                 </div>`;
+                setTimeout(drawSvgLines, 50);
             } else if(q.type === "drag_drop") {
-                html += `<div class="drag-pool" id="drag-pool">
-                    ${q.pool.map(p => `<div class="drag-card" draggable="true" ondragstart="handleDragStart(event, '${p}')" onclick="clickDragFallback('${p}', this)">${p}</div>`).join('')}
-                </div>
+                const prevDrop = userAnswers[currentQ] || [null, null];
+                droppedZoneMap = [...prevDrop];
+                
+                html += `<div class="drag-pool" id="drag-pool">`;
+                q.pool.forEach(p => {
+                    // Eğer kutularda yer almıyorsa havuzda göster
+                    if(!droppedZoneMap.includes(p)) {
+                        html += `<div class="drag-card" draggable="true" ondragstart="handleDragStart(event, '${p}')">${p}</div>`;
+                    }
+                });
+                html += `</div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:15px;">
                     <div>
                         <div style="font-size:11px; font-weight:700; color:#64748b;">1. Değer Boşluğu</div>
-                        <div class="drop-zone" id="zone-0" ondragover="handleDragOver(event)" ondrop="handleDrop(event, 0)">Buraya Sürükleyin</div>
+                        <div class="drop-zone" id="zone-0" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 0)">${droppedZoneMap[0] || 'Buraya Sürükleyin'}</div>
+                        ${droppedZoneMap[0] ? `<button onclick="clearZone(0)" style="margin-top:5px; padding:6px; font-size:11px; background:#ef4444;">Temizle</button>` : ''}
                     </div>
                     <div>
                         <div style="font-size:11px; font-weight:700; color:#64748b;">2. Değer Boşluğu</div>
-                        <div class="drop-zone" id="zone-1" ondragover="handleDragOver(event)" ondrop="handleDrop(event, 1)">Buraya Sürükleyin</div>
+                        <div class="drop-zone" id="zone-1" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 1)">${droppedZoneMap[1] || 'Buraya Sürükleyin'}</div>
+                        ${droppedZoneMap[1] ? `<button onclick="clearZone(1)" style="margin-top:5px; padding:6px; font-size:11px; background:#ef4444;">Temizle</button>` : ''}
                     </div>
                 </div>`;
             }
@@ -380,6 +421,16 @@
             document.querySelectorAll('.match-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
             selectedOpt = val;
+            userAnswers[currentQ] = val;
+        }
+
+        // Checklist Sınırlandırma (Örn: En fazla 2 seçim)
+        function limitChecklist(chk, max) {
+            const checkedBoxes = document.querySelectorAll('.chk-item:checked');
+            if (checkedBoxes.length > max) {
+                chk.checked = false;
+                alert(`Bu soruda en fazla ${max} seçenek işaretleyebilirsiniz!`);
+            }
         }
 
         // Görsel Çizgili Eşleştirme (Soru 5)
@@ -393,6 +444,7 @@
         function clickRightNode(id, el) {
             if(activeLeftId !== null) {
                 lineUserMap[activeLeftId] = id;
+                userAnswers[currentQ] = {...lineUserMap};
                 drawSvgLines();
                 activeLeftId = null;
                 document.querySelectorAll('#left-col .line-node').forEach(n => n.classList.remove('active'));
@@ -400,20 +452,29 @@
         }
         function drawSvgLines() {
             const svg = document.getElementById('svg-canvas');
-            const wrapper = document.getElementById('line-wrapper').getBoundingClientRect();
+            const wrapper = document.getElementById('line-wrapper');
+            if(!svg || !wrapper) return;
+            const wrapRect = wrapper.getBoundingClientRect();
             svg.innerHTML = "";
+
+            if(userAnswers[currentQ] && typeof userAnswers[currentQ] === 'object' && !(userAnswers[currentQ] instanceof Array)) {
+                lineUserMap = {...userAnswers[currentQ]};
+            }
 
             Object.keys(lineUserMap).forEach(leftId => {
                 const rightId = lineUserMap[leftId];
-                const leftEl = document.querySelector(`#left-col .line-node[data-id="${leftId}"]`).getBoundingClientRect();
-                const rightEl = document.querySelector(`#right-col .line-node[data-id="${rightId}"]`).getBoundingClientRect();
+                const leftNodeEl = document.querySelector(`#left-col .line-node[data-id="${leftId}"]`);
+                const rightNodeEl = document.querySelector(`#right-col .line-node[data-id="${rightId}"]`);
+                if(!leftNodeEl || !rightNodeEl) return;
 
-                const x1 = leftEl.right - wrapper.left;
-                const y1 = leftEl.top + leftEl.height/2 - wrapper.top;
-                const x2 = rightEl.left - wrapper.left;
-                const y2 = rightEl.top + rightEl.height/2 - wrapper.top;
+                const leftEl = leftNodeEl.getBoundingClientRect();
+                const rightEl = rightNodeEl.getBoundingClientRect();
 
-                // Kitaptaki Kıvrımlı Çizgi Efekti (Path)
+                const x1 = leftEl.right - wrapRect.left;
+                const y1 = leftEl.top + leftEl.height/2 - wrapRect.top;
+                const x2 = rightEl.left - wrapRect.left;
+                const y2 = rightEl.top + rightEl.height/2 - wrapRect.top;
+
                 const cx1 = x1 + (x2 - x1) / 2;
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 path.setAttribute("d", `M ${x1} ${y1} C ${cx1} ${y1}, ${cx1} ${y2}, ${x2} ${y2}`);
@@ -424,79 +485,150 @@
             });
         }
 
-        // Sürükle-Bırak Mantığı (Soru 7)
+        // Sürükle-Bırak Mantığı (Soru 7) - GERÇEK SÜRÜKLE BIRAK
         let draggedItem = "";
         let droppedZoneMap = [null, null];
-        function handleDragStart(e, val) { draggedItem = val; }
-        function handleDragOver(e) { e.preventDefault(); }
+
+        function handleDragStart(e, val) { 
+            draggedItem = val; 
+        }
+        function handleDragOver(e) { 
+            e.preventDefault(); 
+            e.currentTarget.classList.add('hovered');
+        }
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('hovered');
+        }
         function handleDrop(e, zoneIdx) {
             e.preventDefault();
+            e.currentTarget.classList.remove('hovered');
             if(draggedItem && !droppedZoneMap.includes(draggedItem)) {
                 droppedZoneMap[zoneIdx] = draggedItem;
-                document.getElementById(`zone-${zoneIdx}`).innerText = draggedItem;
-                document.getElementById(`zone-${zoneIdx}`).style.borderColor = "#f97316";
+                userAnswers[currentQ] = [...droppedZoneMap];
+                draggedItem = "";
+                renderQuestion(); // Ekranı güncelle
             }
         }
-        function clickDragFallback(val, el) {
-            if(!droppedZoneMap[0]) {
-                droppedZoneMap[0] = val;
-                document.getElementById('zone-0').innerText = val;
-                el.style.opacity = "0.3";
-            } else if(!droppedZoneMap[1] && droppedZoneMap[0] !== val) {
-                droppedZoneMap[1] = val;
-                document.getElementById('zone-1').innerText = val;
-                el.style.opacity = "0.3";
+        function clearZone(zoneIdx) {
+            droppedZoneMap[zoneIdx] = null;
+            userAnswers[currentQ] = [...droppedZoneMap];
+            renderQuestion();
+        }
+
+        // Cevap Kaydetme ve Sonraki Soru
+        function saveCurrentAnswer() {
+            const q = questions[currentQ];
+            if(q.type === "checklist") {
+                const checked = Array.from(document.querySelectorAll('.chk-item:checked')).map(c => parseInt(c.value));
+                if(checked.length > 0) {
+                    userAnswers[currentQ] = checked;
+                } else {
+                    delete userAnswers[currentQ];
+                }
+            } else if(q.type === "single_choice") {
+                if(selectedOpt) {
+                    userAnswers[currentQ] = selectedOpt;
+                }
             }
+            selectedOpt = "";
+        }
+
+        function skipQuestion() {
+            delete userAnswers[currentQ];
+            moveToNext();
         }
 
         function nextQuestion() {
-            const q = questions[currentQ];
-            let isCorrect = false;
+            saveCurrentAnswer();
+            moveToNext();
+        }
 
-            if(q.type === "single_choice") {
-                if(selectedOpt === q.correct) isCorrect = true;
-            } else if(q.type === "checklist") {
-                const checked = Array.from(document.querySelectorAll('.chk-item:checked')).map(c => parseInt(c.value));
-                const correctIds = q.items.filter(i => i.correct).map(i => i.id);
-                if(JSON.stringify(checked.sort()) === JSON.stringify(correctIds.sort())) isCorrect = true;
-            } else if(q.type === "draw_line") {
-                if(lineUserMap[0] === 0 && lineUserMap[1] === 1) isCorrect = true;
-            } else if(q.type === "drag_drop") {
-                if(JSON.stringify(droppedZoneMap.sort()) === JSON.stringify(q.correct.sort())) isCorrect = true;
-            }
-
-            const puanlar = [15, 10, 15, 15, 15, 10, 10, 10];
-            if(isCorrect) {
-                score += puanlar[currentQ];
-                correctCount++;
-            } else {
-                wrongCount++;
-            }
-
-            selectedOpt = ""; activeLeftId = null; lineUserMap = {}; droppedZoneMap = [null, null];
+        function moveToNext() {
             currentQ++;
-
             if(currentQ < questions.length) {
                 renderQuestion();
             } else {
-                finishExam();
+                calculateAndShowResult();
             }
         }
 
-        function finishExam() {
+        // Puan Hesaplama ve Sonuç Ekranı
+        function calculateAndShowResult() {
             clearInterval(timerInterval);
+            score = 0;
+            correctCount = 0;
+            wrongCount = 0;
+            emptyCount = 0;
+
+            let breakdownHtml = "";
+
+            questions.forEach((q, idx) => {
+                const ans = userAnswers[idx];
+                let isCorrect = false;
+                let statusText = "";
+
+                if (ans === undefined || ans === null || (Array.isArray(ans) && ans.length === 0) || (typeof ans === 'object' && Object.keys(ans).length === 0)) {
+                    emptyCount++;
+                    statusText = `<span class="badge-empty" onclick="goToQuestion(${idx})">Boş (Düzenle)</span>`;
+                } else {
+                    if (q.type === "single_choice") {
+                        if (ans === q.correct) isCorrect = true;
+                    } else if (q.type === "checklist") {
+                        const correctIds = q.items.filter(i => i.correct).map(i => i.id);
+                        if (JSON.stringify(ans.sort()) === JSON.stringify(correctIds.sort())) isCorrect = true;
+                    } else if (q.type === "draw_line") {
+                        if (ans[0] === 0 && ans[1] === 1) isCorrect = true;
+                    } else if (q.type === "drag_drop") {
+                        if (Array.isArray(ans) && JSON.stringify(ans.sort()) === JSON.stringify(q.correct.sort())) isCorrect = true;
+                    }
+
+                    if (isCorrect) {
+                        score += q.puan;
+                        correctCount++;
+                        statusText = `<span class="badge-correct">Doğru (+${q.puan}P)</span>`;
+                    } else {
+                        wrongCount++;
+                        statusText = `<span class="badge-wrong" onclick="goToQuestion(${idx})">Yanlış (Düzenle)</span>`;
+                    }
+                }
+
+                breakdownHtml += `<div class="result-item">
+                    <span>Soru ${idx + 1} (${q.puan} Puan)</span>
+                    ${statusText}
+                </div>`;
+            });
+
+            document.getElementById('res-score').innerText = score;
+            document.getElementById('res-stats').innerText = `${correctCount} / ${wrongCount} / ${emptyCount}`;
+            document.getElementById('res-time').innerText = document.getElementById('exam-timer').innerText;
+            document.getElementById('result-breakdown').innerHTML = breakdownHtml;
+
             document.getElementById('screen-exam').classList.add('hidden');
-            
+            document.getElementById('screen-result').classList.remove('hidden');
+
+            // Firebase'e Kaydet
             db.ref('skorlar/' + userName.replace(/[^a-zA-Z0-9]/g, "_")).set({
                 isim: userName,
                 puan: score,
                 dogru: correctCount,
                 yanlis: wrongCount,
+                bos: emptyCount,
                 sure: document.getElementById('exam-timer').innerText,
                 tarih: Date.now()
-            }).then(() => {
-                openLeaderboard();
             });
+        }
+
+        // Sonuç ekranından ilgili soruya geri gitme
+        function goToQuestion(qIdx) {
+            currentQ = qIdx;
+            document.getElementById('screen-result').classList.add('hidden');
+            document.getElementById('screen-exam').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function openLeaderboardFromResults() {
+            document.getElementById('screen-result').classList.add('hidden');
+            openLeaderboard();
         }
 
         function openNotes() {
@@ -508,6 +640,7 @@
             document.getElementById('screen-login').classList.add('hidden');
             document.getElementById('screen-notes').classList.add('hidden');
             document.getElementById('screen-exam').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
             document.getElementById('screen-leaderboard').classList.remove('hidden');
 
             db.ref('skorlar').orderByChild('puan').on('value', (snap) => {
@@ -522,7 +655,7 @@
                         <td><strong>${index + 1}</strong></td>
                         <td>${item.isim}</td>
                         <td><span style="color:#f97316; font-weight:bold;">${item.puan}</span></td>
-                        <td>${item.dogru}/${item.yanlis}</td>
+                        <td>${item.dogru}/${item.yanlis}/${item.bos || 0}</td>
                         <td>${item.sure}</td>
                     </tr>`;
                 });
@@ -532,6 +665,8 @@
         function backToLogin() {
             document.getElementById('screen-notes').classList.add('hidden');
             document.getElementById('screen-leaderboard').classList.add('hidden');
+            document.getElementById('screen-exam').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
             document.getElementById('screen-login').classList.remove('hidden');
         }
     </script>
